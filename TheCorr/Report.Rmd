@@ -1,0 +1,20 @@
+Here is the regression model:
+
+```{r,collapse=TRUE}
+fit <- lm(regmod())
+b   <- round(coef(fit),4)
+summary(fit)
+```
+
+```{r,echo=FALSE}
+options(digits = 4)
+Formula=NULL
+for (i in 2:length(b)){
+    if (b[i]>0){Formula<-c(Formula,"+",paste(b[i],"*",names(b)[i]))}
+    else{
+    Formula<-c(Formula,paste(b[i],"*",names(b)[i]))
+    }
+}
+```
+
+The fitting results is `r paste(paste(input$outcome,"=",b[1]),paste(Formula,collapse=''))` 
